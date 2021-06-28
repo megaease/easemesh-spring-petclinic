@@ -14,21 +14,14 @@ spec:
     egressProtocol: http
 
 ---
-kind: canary
+kind: loadbalance
 apiVersion: mesh.megaease.com/v1alpla1
 metadata:
   name: customers-service
 spec:
-  canaryRules:
-  - serviceInstanceLabels:
-      version: canary
-    headers:
-      X-Mesh-Canary:
-        exact: lv1
-    urls:
-    - methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS", "HEAD", "PATCH"]
-      url:
-        prefix: "/"
+  policy: random
+  HeaderHashKey:
+
 ---
 kind: observabilityOutputServer
 apiVersion: mesh.megaease.com/v1alpla1
