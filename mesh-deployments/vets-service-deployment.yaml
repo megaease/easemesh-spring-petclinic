@@ -17,9 +17,9 @@ data:
       application:
         name:  vets-service
       datasource:
-        url: jdbc:mysql://mysql.default:3306/petclinic?allowPublicKeyRetrieval=true&useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=UTC&verifyServerCertificate=false
-        username: meshdemo
-        password: meshdemo
+        url: jdbc:mysql://km-mysql.default:3306/meshappdemo?allowPublicKeyRetrieval=true&useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezo    ne=UTC&verifyServerCertificate=false
+        username: meshappdemo
+        password: meshappdemo
       jpa:
         database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
       zipkin:
