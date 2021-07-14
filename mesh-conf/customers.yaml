@@ -1,5 +1,5 @@
 ---
-kind: service
+kind: Service
 apiVersion: mesh.megaease.com/v1alpla1
 metadata:
   name: customers-service
@@ -14,7 +14,7 @@ spec:
     egressProtocol: http
 
 ---
-kind: loadbalance
+kind: LoadBalance
 apiVersion: mesh.megaease.com/v1alpla1
 metadata:
   name: customers-service
@@ -23,7 +23,7 @@ spec:
   HeaderHashKey:
 
 ---
-kind: observabilityOutputServer
+kind: ObservabilityOutputServer
 apiVersion: mesh.megaease.com/v1alpla1
 metadata:
   name: customers-service
@@ -33,7 +33,7 @@ spec:
     timeout: 10000
 
 ---
-kind: observabilityTracings
+kind: ObservabilityTracings
 apiVersion: mesh.megaease.com/v1alpla1
 metadata:
   name: customers-service
@@ -68,7 +68,7 @@ spec:
     enabled: true
     servicePrefix: rabbitmq
 ---
-kind: observabilityMetrics
+kind: ObservabilityMetrics
 apiVersion: mesh.megaease.com/v1alpla1
 metadata:
   name: customers-service

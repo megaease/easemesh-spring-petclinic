@@ -1,7 +1,7 @@
-kind: tenant
+kind: Tenant
 apiVersion: mesh.megaease.com/v1alpla1
 metadata:
   name: pet
 spec:
-  description: pet tenant
+  description: 'pet tenant'
 
