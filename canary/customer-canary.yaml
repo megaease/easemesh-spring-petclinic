@@ -1,5 +1,5 @@
 ---
-kind: canary
+kind: Canary
 apiVersion: mesh.megaease.com/v1alpla1
 metadata:
   name: customers-service

@@ -42,7 +42,7 @@ metadata:
 spec:
   service:
     name: customers-service
-    labels: 
+    labels:
       version: canary
   deploy:
     replicas: 1
@@ -86,4 +86,3 @@ spec:
               name: customers-service
             name: configmap-volume-0
         restartPolicy: Always
-status: {}
