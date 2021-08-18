@@ -1,3 +1,53 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: spring-petclinic
+  name: api-gateway
+  annotations:
+    mesh.megaease.com/service-name: "api-gateway"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: api-gateway
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: api-gateway
+    spec:
+      containers:
+      - image: megaease/spring-petclinic-api-gateway:latest
+        name: api-gateway
+        imagePullPolicy: Always
+        lifecycle:
+          preStop:
+            exec:
+              command: ["sh", "-c", "sleep 10"]
+        command: ["/bin/sh"]
+        args: ["-c", "java -server -Xmx1024m -Xms1024m -Dspring.profiles.active=sit -Djava.security.egd=file:/dev/./urandom org.springframework.boot.loader.JarLauncher" ]
+        volumeMounts:
+          - mountPath: /application/application-sit.yml
+            name: configmap-volume-0
+            subPath: application-sit.yml
+        resources:
+          limits:
+            cpu: 2000m
+            memory: 1Gi
+          requests:
+            cpu: 200m
+            memory: 256Mi
+        ports:
+        - containerPort: 8080
+      volumes:
+        - configMap:
+            defaultMode: 420
+            items:
+              - key: application-sit-yml
+                path: application-sit.yml
+            name: spring-petclinic-api-gateway
+          name: configmap-volume-0
+      restartPolicy: Always
 ---
 apiVersion: v1
 kind: ConfigMap
@@ -50,56 +100,5 @@ data:
         preferIpAddress: true
         lease-expiration-duration-in-seconds: 60
 
----
 
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  namespace: spring-petclinic
-  name: api-gateway
-  annotations:
-    mesh.megaease.com/service-name: "api-gateway"
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: api-gateway
-  strategy: {}
-  template:
-    metadata:
-      labels:
-        app: api-gateway
-    spec:
-      containers:
-      - image: megaease/spring-petclinic-api-gateway:latest
-        name: api-gateway
-        imagePullPolicy: Always
-        lifecycle:
-          preStop:
-            exec:
-              command: ["sh", "-c", "sleep 10"]
-        command: ["/bin/sh"]
-        args: ["-c", "java -server -Xmx1024m -Xms1024m -Dspring.profiles.active=sit -Djava.security.egd=file:/dev/./urandom org.springframework.boot.loader.JarLauncher" ]
-        volumeMounts:
-          - mountPath: /application/application-sit.yml
-            name: configmap-volume-0
-            subPath: application-sit.yml
-        resources:
-          limits:
-            cpu: 2000m
-            memory: 1Gi
-          requests:
-            cpu: 200m
-            memory: 256Mi
-        ports:
-        - containerPort: 8080
-      volumes:
-        - configMap:
-            defaultMode: 420
-            items:
-              - key: application-sit-yml
-                path: application-sit.yml
-            name: spring-petclinic-api-gateway
-          name: configmap-volume-0
-      restartPolicy: Always
 
