@@ -6,7 +6,7 @@ metadata:
 spec:
   registerTenant: pet
   sidecar:
-    discoveryType: eureka
+    discoveryType: consul
     address: "127.0.0.1"
     ingressPort: 13001
     ingressProtocol: http

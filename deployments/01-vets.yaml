@@ -16,7 +16,7 @@ spec:
         app: vets-service
     spec:
       containers:
-        - image: megaease/spring-petclinic-vets-service:latest
+        - image: megaease/spring-petclinic-vets-service:consul
           name: vets-service
           imagePullPolicy: IfNotPresent
           lifecycle:
@@ -76,12 +76,9 @@ data:
         web:
           servlet:
           enabled: false
-    eureka:
-      client:
-        serviceUrl:
-          defaultZone: http://127.0.0.1:13009/mesh/eureka
-      instance:
-        preferIpAddress: true
-        lease-expiration-duration-in-seconds: 60
+      cloud:
+        consul:
+          host: localhost
+          port: 13009
 
 

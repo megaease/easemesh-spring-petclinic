@@ -17,9 +17,9 @@ spec:
         app: api-gateway
     spec:
       containers:
-      - image: megaease/spring-petclinic-api-gateway:latest
+      - image: megaease/spring-petclinic-api-gateway:consul
         name: api-gateway
-        imagePullPolicy: Always
+        imagePullPolicy: IfNotPresent
         lifecycle:
           preStop:
             exec:
@@ -72,6 +72,9 @@ data:
         loadbalancer:
           ribbon:
             enabled: true
+        consul:
+          host: localhost
+          port: 13009
         gateway:
           routes:
              - id: vets-service
@@ -92,13 +95,6 @@ data:
                  - Path=/api/customer/**
                filters:
                  - StripPrefix=2
-    eureka:
-      client:
-        serviceUrl:
-          defaultZone: http://127.0.0.1:13009/mesh/eureka
-      instance:
-        preferIpAddress: true
-        lease-expiration-duration-in-seconds: 60
 
 
 
