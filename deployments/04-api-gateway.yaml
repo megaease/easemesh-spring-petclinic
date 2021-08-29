@@ -17,7 +17,7 @@ spec:
         app: api-gateway
     spec:
       containers:
-      - image: megaease/spring-petclinic-api-gateway:latest
+      - image: megaease/spring-petclinic-api-gateway:nacos
         name: api-gateway
         imagePullPolicy: Always
         lifecycle:
@@ -67,8 +67,9 @@ data:
           servlet:
           enabled: false
       application:
-        name:  pet-api-gateway
+        name:  api-gateway
       cloud:
+        nacos.discovery.server-addr: 127.0.0.1:13009
         loadbalancer:
           ribbon:
             enabled: true
@@ -92,13 +93,3 @@ data:
                  - Path=/api/customer/**
                filters:
                  - StripPrefix=2
-    eureka:
-      client:
-        serviceUrl:
-          defaultZone: http://127.0.0.1:13009/mesh/eureka
-      instance:
-        preferIpAddress: true
-        lease-expiration-duration-in-seconds: 60
-
-
-

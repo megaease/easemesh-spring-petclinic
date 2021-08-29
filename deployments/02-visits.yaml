@@ -16,7 +16,7 @@ spec:
         app: visits-service
     spec:
       containers:
-      - image: megaease/spring-petclinic-visits-service:latest
+      - image: megaease/spring-petclinic-visits-service:nacos
         name: visits-service
         imagePullPolicy: Always
         lifecycle:
@@ -75,11 +75,5 @@ data:
         web:
           servlet:
           enabled: false
-    eureka:
-      client:
-        serviceUrl:
-          defaultZone: http://127.0.0.1:13009/mesh/eureka
-      instance:
-        preferIpAddress: true
-        lease-expiration-duration-in-seconds: 60
-
+      cloud:
+        nacos.discovery.server-addr: 127.0.0.1:13009
