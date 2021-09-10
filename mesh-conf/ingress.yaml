@@ -4,7 +4,6 @@ metadata:
   name: pet-ingress
 spec:
   rules:
-  - host: api.dev.megaease.cn
-    paths:
+  - paths:
     - path: /
       backend: api-gateway
