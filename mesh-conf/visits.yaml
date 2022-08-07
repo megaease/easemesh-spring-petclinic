@@ -1,5 +1,5 @@
 kind: Service
-apiVersion: mesh.megaease.com/v1alpla1
+apiVersion: mesh.megaease.com/v2alpla1
 metadata:
   name: visits-service
 spec:
@@ -14,7 +14,7 @@ spec:
 
 ---
 kind: LoadBalance
-apiVersion: mesh.megaease.com/v1alpla1
+apiVersion: mesh.megaease.com/v2alpla1
 metadata:
   name: visits-service
 spec:
@@ -23,7 +23,7 @@ spec:
 
 ---
 kind: ObservabilityOutputServer
-apiVersion: mesh.megaease.com/v1alpla1
+apiVersion: mesh.megaease.com/v2alpla1
 metadata:
   name: visits-service
 spec:
@@ -33,7 +33,7 @@ spec:
 
 ---
 kind: ObservabilityTracings
-apiVersion: mesh.megaease.com/v1alpla1
+apiVersion: mesh.megaease.com/v2alpla1
 metadata:
   name: visits-service
 spec:
@@ -68,7 +68,7 @@ spec:
     servicePrefix: rabbitmq
 ---
 kind: ObservabilityMetrics
-apiVersion: mesh.megaease.com/v1alpla1
+apiVersion: mesh.megaease.com/v2alpla1
 metadata:
   name: visits-service
 spec:

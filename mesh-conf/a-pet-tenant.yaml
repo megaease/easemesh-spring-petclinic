@@ -1,5 +1,5 @@
 kind: Tenant
-apiVersion: mesh.megaease.com/v1alpla1
+apiVersion: mesh.megaease.com/v2alpla1
 metadata:
   name: pet
 spec:

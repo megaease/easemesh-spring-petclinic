@@ -1,6 +1,6 @@
 ---
 kind: Service
-apiVersion: mesh.megaease.com/v1alpla1
+apiVersion: mesh.megaease.com/v2alpla1
 metadata:
   name: vets-service
 spec:
@@ -15,32 +15,24 @@ spec:
 
 ---
 kind: Resilience
-apiVersion: mesh.megaease.com/v1alpla1
+apiVersion: mesh.megaease.com/v2alpla1
 metadata:
   name: vets-service
 spec:
+  failureCodes: [500, 501, 502]
   circuitBreaker:
-    defaultPolicyRef: default
-    policies:
-    - name: default
-      slidingWindowType: COUNT_BASED
-      failureRateThreshold: 50
-      slowCallRateThreshold: 100
-      slidingWindowSize: 20
-      permittedNumberOfCallsInHalfOpenState: 10
-      minimumNumberOfCalls: 10
-      slowCallDurationThreshold: 100ms
-      maxWaitDurationInHalfOpenState: 60s
-      waitDurationInOpenState: 60s
-    urls:
-    - methods:
-      - GET
-      url:
-        prefix: /pet
-        policyRef: default
+    slidingWindowType: COUNT_BASED
+    failureRateThreshold: 50
+    slowCallRateThreshold: 100
+    slidingWindowSize: 20
+    permittedNumberOfCallsInHalfOpenState: 10
+    minimumNumberOfCalls: 10
+    slowCallDurationThreshold: 100ms
+    maxWaitDurationInHalfOpenState: 60s
+    waitDurationInOpenState: 60s
 ---
 kind: LoadBalance
-apiVersion: mesh.megaease.com/v1alpla1
+apiVersion: mesh.megaease.com/v2alpla1
 metadata:
   name: vets-service
 spec:
@@ -49,7 +41,7 @@ spec:
 
 ---
 kind: ObservabilityOutputServer
-apiVersion: mesh.megaease.com/v1alpla1
+apiVersion: mesh.megaease.com/v2alpla1
 metadata:
   name: vets-service
 spec:
@@ -59,7 +51,7 @@ spec:
 
 ---
 kind: ObservabilityTracings
-apiVersion: mesh.megaease.com/v1alpla1
+apiVersion: mesh.megaease.com/v2alpla1
 metadata:
   name: vets-service
 spec:
@@ -94,7 +86,7 @@ spec:
     servicePrefix: rabbitmq
 ---
 kind: ObservabilityMetrics
-apiVersion: mesh.megaease.com/v1alpla1
+apiVersion: mesh.megaease.com/v2alpla1
 metadata:
   name: vets-service
 spec:

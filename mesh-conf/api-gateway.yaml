@@ -1,5 +1,5 @@
 kind: Service
-apiVersion: mesh.megaease.com/v1alpla1
+apiVersion: mesh.megaease.com/v2alpla1
 metadata:
   name: api-gateway
 spec:
@@ -14,7 +14,7 @@ spec:
 
 ---
 kind: ObservabilityOutputServer
-apiVersion: mesh.megaease.com/v1alpla1
+apiVersion: mesh.megaease.com/v2alpla1
 metadata:
   name: api-gateway
 spec:
@@ -24,7 +24,7 @@ spec:
 
 ---
 kind: ObservabilityTracings
-apiVersion: mesh.megaease.com/v1alpla1
+apiVersion: mesh.megaease.com/v2alpla1
 metadata:
   name: api-gateway
 spec:
@@ -59,7 +59,7 @@ spec:
     servicePrefix: rabbitmq
 ---
 kind: ObservabilityMetrics
-apiVersion: mesh.megaease.com/v1alpla1
+apiVersion: mesh.megaease.com/v2alpla1
 metadata:
   name: api-gateway
 spec:
